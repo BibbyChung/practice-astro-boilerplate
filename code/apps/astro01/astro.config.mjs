@@ -1,18 +1,18 @@
 // @ts-check
-import svelte from "@astrojs/svelte";
-import tailwindcss from "@tailwindcss/vite";
-import { defineConfig } from "astro/config";
+import svelte from '@astrojs/svelte'
+import tailwindcss from '@tailwindcss/vite'
+import { defineConfig } from 'astro/config'
 
 // https://astro.build/config
 export default defineConfig({
-	vite: {
-		plugins: [tailwindcss()],
-	},
-	integrations: [svelte()],
-	experimental: {
-		staticImportMetaEnv: true,
-	},
-	devToolbar: {
-		enabled: false,
-	},
-});
+  vite: {
+    plugins: [tailwindcss()],
+  },
+  integrations: [svelte()],
+  experimental: {
+    staticImportMetaEnv: true,
+  },
+  devToolbar: {
+    enabled: false,
+  },
+})
