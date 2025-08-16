@@ -1,25 +1,17 @@
 ---
-import "../styles/global.css";
-// Component Imports
-import Button from "../components/Button.astro";
+import '~/styles/global.css'
+import Main from '~/layouts/main.astro'
+import Env from '~/lib/components/env.svelte'
+import HelloWorldSvelte from '~/lib/components/hello-world.svelte'
 
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
+type Props = {}
+const {} = Astro.props
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro + TailwindCSS</title>
-	</head>
+<Main title="Home">
+  <HelloWorldSvelte client:load />
+	<hr class="my-4 w-full border border-gray-400" />
+	<Env client:only />
+</Main>
 
-	<body>
-		<div class="grid h-screen place-items-center content-center">
-			<Button>Tailwind Button in Astro!</Button>
-			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
-		</div>
-	</body>
-</html>
+<style></style>

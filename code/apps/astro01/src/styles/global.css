@@ -1,1 +1,6 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+.btn {
+	@apply rounded-sm border border-gray-300 px-2 py-1;
+	@apply bg-gray-100 text-black;
+}

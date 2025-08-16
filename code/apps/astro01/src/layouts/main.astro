@@ -1,16 +1,20 @@
 ---
-import "../styles/global.css";
-const { content } = Astro.props;
+import Layout from '~/layouts/layout.astro'
+import Menu from '~/lib/components/menu.svelte'
+
+type Props = {
+	title: string
+}
+const props = Astro.props
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<title>{content.title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+<Layout {...props}>
+	<main class="p-8">
+		<div class="w-full">
+			<Menu client:load />
+		</div>
+		<div class="mt-12 flex w-full flex-col items-start">
+			<slot />
+		</div>
+	</main>
+</Layout>
