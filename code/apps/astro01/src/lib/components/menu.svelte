@@ -7,7 +7,7 @@
     {
       title: 'Home',
       path: baseUrl + '',
-    }
+    },
   ]
 
   const location$ = getWindow().pipe(map((w) => w.location))
@@ -26,4 +26,3 @@
     </li>
   {/each}
 </ul>
-

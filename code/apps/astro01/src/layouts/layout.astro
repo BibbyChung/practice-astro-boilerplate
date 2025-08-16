@@ -2,36 +2,36 @@
 import '~/styles/global.css'
 
 interface Props {
-	title: string
+  title: string
 }
 const props = Astro.props
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{props.title}</title>
-	</head>
-	<body class="layout-bg">
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{props.title}</title>
+  </head>
+  <body class="layout-bg">
+    <slot />
+  </body>
 </html>
 
 <script>
-	import { setWindow } from '~/lib/services/layout.service'
+  import { setWindow } from '~/lib/services/layout.service'
 
-	const w = window
-	setWindow(w)
+  const w = window
+  setWindow(w)
 </script>
 
 <style is:global>
-	@reference "~/styles/global.css";
-	.layout-bg {
-		@apply bg-gray-50;
-	}
+  @reference "~/styles/global.css";
+  .layout-bg {
+    @apply bg-gray-50;
+  }
 </style>

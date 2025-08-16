@@ -10,6 +10,7 @@
   VITE_GIT_TIME: {env.PUBLIC_GIT_TIME} <br />
   DB_PASSWORD(client is empty): {env.DB_PASSWORD} <br />
 </div>
+
 <style>
   /* your styles go here */
 </style>

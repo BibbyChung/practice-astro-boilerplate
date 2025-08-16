@@ -2,13 +2,13 @@
 /// <reference path="../.astro/types.d.ts" />
 
 interface ImportMeta {
-	readonly env: ImportMetaEnv
+  readonly env: ImportMetaEnv
 }
 interface ImportMetaEnv {
-	readonly BASE_URL: string
-	readonly MODE: string
+  readonly BASE_URL: string
+  readonly MODE: string
 
-	readonly DB_PASSWORD: string
-	readonly PUBLIC_GIT_SHORT_VER: string
-	readonly PUBLIC_GIT_TIME: string
+  readonly DB_PASSWORD: string
+  readonly PUBLIC_GIT_SHORT_VER: string
+  readonly PUBLIC_GIT_TIME: string
 }

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import confetti from "canvas-confetti";
+  import confetti from 'canvas-confetti'
 
-	const lang = "svelte";
+  const lang = 'svelte'
 </script>
 
 <h2 class=" bg-pink-400 text-black">hello world - {lang}</h2>

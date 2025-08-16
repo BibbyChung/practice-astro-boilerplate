@@ -7,7 +7,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "lint": "prettier --write  \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\" && eslint --fix \"src/**/*.{js,ts,jsx,tsx,astro}\""
+    "lint": "prettier --write  \"**/*.{js,jsx,ts,tsx,md,mdx,astro,svelte}\" && eslint --fix \"src/**/*.{js,ts,jsx,tsx,astro,svelte}\""
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.3",

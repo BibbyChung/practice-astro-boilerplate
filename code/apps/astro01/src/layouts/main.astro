@@ -3,18 +3,18 @@ import Layout from '~/layouts/layout.astro'
 import Menu from '~/lib/components/menu.svelte'
 
 type Props = {
-	title: string
+  title: string
 }
 const props = Astro.props
 ---
 
 <Layout {...props}>
-	<main class="p-8">
-		<div class="w-full">
-			<Menu client:load />
-		</div>
-		<div class="mt-12 flex w-full flex-col items-start">
-			<slot />
-		</div>
-	</main>
+  <main class="p-8">
+    <div class="w-full">
+      <Menu client:load />
+    </div>
+    <div class="mt-12 flex w-full flex-col items-start">
+      <slot />
+    </div>
+  </main>
 </Layout>
