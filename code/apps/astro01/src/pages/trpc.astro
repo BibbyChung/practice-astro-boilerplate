@@ -1,0 +1,53 @@
+---
+import Main from '~/layouts/main.astro'
+import { appCaller } from '~/server/_init'
+import { getAstroContext } from '~/server/astro-context'
+
+type Props = {}
+const {} = Astro.props
+
+const id = 'a8888888'
+const user = await appCaller(getAstroContext(Astro)).user.getUserById(id)
+---
+
+<Main title="TRPC">
+  <button class="btn mt-2">get user</button>
+  <hr />
+  <div data-user-data={JSON.stringify(user)}></div>
+</Main>
+
+<script>
+  import { fromEvent, tap } from 'rxjs'
+  import { trpc } from '~/lib/common/trpc'
+
+  // get data from trpc server
+  const btnElem = document.querySelector('.btn')
+  const getUserSub = fromEvent(btnElem!, 'click')
+    .pipe(
+      tap(async (ev) => {
+        console.log(ev)
+        const id = '8888888'
+        await trpc.user.createUser.mutate({
+          id,
+          name: 'bbbb',
+        })
+
+        const pAll = await Promise.allSettled([
+          trpc.user.getUserById.query(id),
+          trpc.user.getUserById.query(id),
+          trpc.user.getUserById.query(id),
+          trpc.user.getUserById.query(id),
+          trpc.user.getUserById.query(id),
+          trpc.user.getUserById.query(id),
+          trpc.user.getUserById.query(id),
+        ])
+
+        console.log(pAll)
+      }),
+    )
+    .subscribe()
+
+  // fetch data from element dataset
+  const uuElem = document.querySelector('[data-user-data]') as HTMLElement
+  uuElem!.innerText = uuElem?.dataset?.userData ?? ''
+</script>
