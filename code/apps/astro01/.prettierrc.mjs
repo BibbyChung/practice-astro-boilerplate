@@ -6,7 +6,7 @@ export default {
   singleQuote: true,
   trailingComma: 'all',
   printWidth: 100,
-  svelteBracketNewLine: false,
+  svelteBracketNewLine: true,
   plugins: [
     'prettier-plugin-astro',
     'prettier-plugin-svelte',

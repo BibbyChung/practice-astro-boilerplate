@@ -21,8 +21,8 @@
   {#each menus as item}
     <li class="mr-2">
       <a
-        class:text-red-5={($location$?.pathname ?? '') === item.path}
-        class="text-blue-5 underline"
+        class:text-red-500={($location$?.pathname ?? '') === `${item.path}`}
+        class="text-blue-500 underline"
         href={item.path}
       >
         {item.title}

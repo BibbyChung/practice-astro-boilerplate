@@ -27,7 +27,8 @@
       <h2 class="text-blue-300">{item.name}</h2>
       <span>{item.description}</span>
       <button class="btn block bg-pink-400" on:click|preventDefault={() => del(item.id)}
-        >delete book</button>
+        >delete book</button
+      >
     </div>
   {/each}
 </div>
