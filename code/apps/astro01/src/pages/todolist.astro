@@ -1,0 +1,11 @@
+---
+import MainLayout from '~/layouts/main.astro'
+import TodolistComp from '~/lib/components/todolist.svelte'
+---
+
+<MainLayout title="Todolist">
+  <main class="p-4">
+    <h1 class="mb-4 text-2xl font-bold">Todo List</h1>
+    <TodolistComp client:load />
+  </main>
+</MainLayout>

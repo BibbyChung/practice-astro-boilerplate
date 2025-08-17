@@ -1,0 +1,24 @@
+# Todolist 開發任務清單
+
+- [x] **(Service)** 建立 `todo.service.ts` 檔案。
+- [x] **(Service)** 在 `todo.service.ts` 中定義 `Todo` 與 `TodoState` 型別。
+- [x] **(Service)** 在 `todo.service.ts` 中建立 `BehaviorSubject` 來管理 `TodoState`。
+- [x] **(Service)** 實作 `addTodo` 函式。
+- [x] **(Service)** 實作 `deleteTodo` 函式。
+- [x] **(Service)** 實作 `searchTodos` 函式。
+- [x] **(Service)** 實作 `toggleTodo` 函式。
+- [x] **(Service)** 實作 `selectAllTodos` 函式。
+- [x] **(Service)** 實作 `deleteCompletedTodos` 函式。
+- [x] **(UI)** 建立 `todolist.svelte` 檔案。
+- [x] **(UI)** 在 `todolist.svelte` 中訂閱 `todo.service.ts` 的狀態。
+- [x] **(UI)** 渲染待辦事項列表。
+- [x] **(UI)** 建立新增待辦事項的輸入框與按鈕。
+- [x] **(UI)** 建立刪除待辦事項的按鈕。
+- [x] **(UI)** 建立搜尋待辦事項的輸入框。
+- [x] **(UI)** 加入狀態切換功能 (checkbox)。
+- [x] **(UI)** 加入已完成/未完成的統計數字。
+- [x] **(UI)** 為已完成的項目加上刪除線樣式。
+- [x] **(UI)** 加入「全選」按鈕。
+- [x] **(UI)** 加入「批次刪除」按鈕。
+- [x] **(Routing)** 建立 `src/pages/todolist.astro` 檔案。
+- [x] **(Routing)** 在 `todolist.astro` 中引入並使用 `todolist.svelte` 元件。
