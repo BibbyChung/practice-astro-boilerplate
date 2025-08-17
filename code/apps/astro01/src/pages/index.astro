@@ -2,14 +2,14 @@
 import '~/styles/global.css'
 import Main from '~/layouts/main.astro'
 import Env from '~/lib/components/env.svelte'
-import HelloWorldSvelte from '~/lib/components/hello-world.svelte'
+import HelloWorldComp from '~/lib/components/hello-world.svelte'
 
 type Props = {}
 const {} = Astro.props
 ---
 
 <Main title="Home">
-  <HelloWorldSvelte client:load />
+  <HelloWorldComp client:load />
   <hr />
   <Env client:only />
 </Main>

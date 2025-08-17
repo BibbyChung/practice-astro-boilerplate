@@ -8,7 +8,7 @@ export const isClient = () => {
     }
     return false
   } catch (err) {
-    return true
+    return false
   }
 }
 
