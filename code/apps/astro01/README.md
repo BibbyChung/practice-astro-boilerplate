@@ -1,3 +1,11 @@
+
+``` bash
+
+pnpm astro add @analogjs/astro-angular
+
+
+```
+
 # Astro with Tailwind
 
 ```sh
