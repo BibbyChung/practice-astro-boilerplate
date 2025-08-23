@@ -8,6 +8,7 @@
       "~/lib/*": ["src/lib/*"],
       "~/layouts/*": ["src/layouts/*"],
       "~/styles/*": ["src/styles/*"]
-    }
+    },
+    "jsx": "preserve"
   }
 }
