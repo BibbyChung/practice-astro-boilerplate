@@ -1,22 +1,21 @@
 <script lang="ts">
-  import {
-    getTodo,
-    addTodo,
-    deleteTodo,
-    searchTodos,
-    toggleTodo,
-    toggleAllTodos,
-    deleteCompletedTodos,
-  } from '~/lib/services/todo.service'
-  import { combineLatest } from 'rxjs'
   import { map } from 'rxjs/operators'
+  import {
+    addTodo,
+    deleteCompletedTodos,
+    deleteTodo,
+    getTodo,
+    searchTodos,
+    toggleAllTodos,
+    toggleTodo,
+  } from '~/lib/services/todolist.service'
 
   let newTodoText = ''
 
   const todo$ = getTodo()
 
-  const filteredTodos$ = combineLatest([todo$]).pipe(
-    map(([{ todos, searchTerm }]) =>
+  const filteredTodos$ = todo$.pipe(
+    map(({ todos, searchTerm }) =>
       todos.filter((todo) => todo.text.toLowerCase().includes(searchTerm.toLowerCase())),
     ),
   )
