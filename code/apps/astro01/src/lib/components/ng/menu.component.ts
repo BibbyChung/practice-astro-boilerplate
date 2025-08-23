@@ -31,7 +31,11 @@ export class MenuComponent {
     {
       title: 'Home',
       path: this.baseUrl + '',
-    }
+    },
+    {
+      title: 'todolist-angular',
+      path: this.baseUrl + 'todolist-angular/',
+    },
   ]
 
   localPathName$ = getWindow().pipe(map((lo) => lo.location.pathname))
