@@ -1,5 +1,4 @@
-
-``` bash
+```bash
 
 pnpm astro add @analogjs/astro-angular
 
