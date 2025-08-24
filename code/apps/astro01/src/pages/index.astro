@@ -4,7 +4,6 @@ import Main from '~/layouts/main.astro'
 // import Env from '~/lib/components/env.svelte'
 // import HelloWorldComp from '~/lib/components/hello-world.svelte'
 import { HelloWorldComponent as HelloWorldComp } from '~/lib/components/ng/hello-world.component'
-import { EnvComponent } from '~/lib/components/ng/env.component'
 
 type Props = {}
 const {} = Astro.props
@@ -12,8 +11,6 @@ const {} = Astro.props
 
 <Main title="Home">
   <HelloWorldComp client:load />
-  <hr />
-  <EnvComponent client:load />
 </Main>
 
 <style></style>

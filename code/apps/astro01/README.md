@@ -2,8 +2,13 @@
 
 pnpm astro add @analogjs/astro-angular
 
-
 ```
+
+## issues
+
+- 一個 astro 只能有一個 angular component，不然就炸掉
+- 他跟 svelte component 不合，會使 svelte 炸掉
+- 看起來只能自己跟自己玩了 gg
 
 # Astro with Tailwind
 

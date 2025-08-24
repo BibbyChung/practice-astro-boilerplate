@@ -10,7 +10,17 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  integrations: [svelte(), analogjsangular()],
+  integrations: [
+    analogjsangular({
+      vite: {
+        transformFilter: (_code, id) => {
+          // console.log(id)
+          return id.includes('src/lib/components/ng') // <- only transform Angular TypeScript files
+        },
+      },
+    }),
+    svelte(),
+  ],
   experimental: {
     staticImportMetaEnv: true,
   },
