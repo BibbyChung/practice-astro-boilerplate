@@ -2,6 +2,11 @@
 
 ```sh
 pnpm create astro@latest -- --template with-tailwindcss
+
+
+pnpm astro add react
+pnpm add @preact/signals-react
+
 ```
 
 ## todos
