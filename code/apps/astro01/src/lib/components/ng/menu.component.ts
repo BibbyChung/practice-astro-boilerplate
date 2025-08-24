@@ -4,7 +4,7 @@ import { map } from 'rxjs'
 import { getWindow } from '~/lib/services/layout.service'
 
 @Component({
-  // selector: 'app-menu',
+  selector: 'app-menu',
   imports: [CommonModule],
   template: `
     <ul class="flex">

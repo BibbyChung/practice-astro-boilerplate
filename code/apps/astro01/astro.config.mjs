@@ -9,7 +9,16 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  integrations: [analogjsangular()],
+  integrations: [
+    analogjsangular({
+      vite: {
+        transformFilter: (_code, id) => {
+          // console.log(id)
+          return id.includes('src/lib/components/ng') // <- only transform Angular TypeScript files
+        },
+      },
+    }),
+  ],
   build: {
     assets: 'assets',
   },

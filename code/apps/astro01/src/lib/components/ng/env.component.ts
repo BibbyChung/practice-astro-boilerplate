@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
 
 @Component({
-  // selector: 'app-env',  
+  selector: 'app-env',
   imports: [],
   template: `
     <h2>===environment===</h2>
