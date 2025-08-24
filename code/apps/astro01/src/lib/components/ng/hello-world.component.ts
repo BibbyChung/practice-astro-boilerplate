@@ -7,13 +7,12 @@ import { getSubject } from '~/lib/common/util'
 import { EnvComponent } from '~/lib/components/ng/env.component'
 
 @Component({
-  selector: 'app-hello-world',
-  imports: [CommonModule, EnvComponent],
+  // selector: 'app-hello-world',
+  imports: [CommonModule],
+  standalone: true,
   template: `
     <h2 class="p-2 font-serif text-2xl text-black">hello world - {{ lang }}</h2>
     <button class="btn mt-2" (click)="btnClick$.next($event)">click it</button>
-    <hr />
-    <app-env />
   `,
   styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush,
