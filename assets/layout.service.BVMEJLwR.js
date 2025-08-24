@@ -1,0 +1,1 @@
+import{g as o}from"./util.B4kyCxWd.js";import{o as c,c as p,m as u}from"./map.BidrtvmN.js";function f(t,i){return c(function(a,n){var s=0;a.subscribe(p(n,function(e){return t.call(i,e,s++)&&n.next(e)}))})}const r=o(null),d=t=>{r.next(t)},g=()=>r.pipe(f(t=>!!t),u(t=>t));o(null);export{g,d as s};
