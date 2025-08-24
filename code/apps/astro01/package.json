@@ -17,7 +17,7 @@
     "astro": "^5.12.9",
     "canvas-confetti": "^1.9.3",
     "rxjs": "^7.8.2",
-    "svelte": "^5.38.5",
+    "svelte": "^5.38.6",
     "tailwindcss": "^4.1.3",
     "typescript": "^5.9.2"
   },
