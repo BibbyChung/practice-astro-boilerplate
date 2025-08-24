@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { ListComponent } from './list.component'
 
 @Component({
-  selector: 'bb-app',
+  // selector: 'bb-app',
   imports: [CommonModule, ListComponent],
   template: `
     <div class="app-ccc flex justify-center">
