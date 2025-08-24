@@ -13,8 +13,8 @@
       path: baseUrl + 'book/',
     },
     {
-      title: 'Todolist',
-      path: baseUrl + 'todolist/',
+      title: 'todolist-svelte-ai',
+      path: baseUrl + 'todolist-svelte-ai/',
     },
   ]
 
