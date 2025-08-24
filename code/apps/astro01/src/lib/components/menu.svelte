@@ -12,6 +12,10 @@
       title: 'Book',
       path: baseUrl + 'book/',
     },
+    {
+      title: 'todolist-svelte',
+      path: baseUrl + 'todolist-svelte/',
+    },
   ]
 
   const location$ = getWindow().pipe(map((w) => w.location))
