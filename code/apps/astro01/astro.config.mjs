@@ -9,6 +9,9 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   integrations: [svelte()],
+  build: {
+    assets: 'assets',
+  },
   experimental: {
     staticImportMetaEnv: true,
   },
