@@ -12,3 +12,12 @@ interface ImportMetaEnv {
   readonly PUBLIC_GIT_SHORT_VER: string
   readonly PUBLIC_GIT_TIME: string
 }
+
+declare namespace App {
+  interface Locals {
+    user: {
+      name: string
+    }
+    welcomeTitle: () => string
+  }
+}

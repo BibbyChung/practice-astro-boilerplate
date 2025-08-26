@@ -2,6 +2,8 @@
 
 ```sh
 pnpm create astro@latest -- --template with-tailwindcss
+
+pnpm astro add node
 ```
 
 ## todos
