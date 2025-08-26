@@ -3,10 +3,11 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
+    "dev": "./.bin/tools.sh runDev",
+    "build": "./.bin/tools.sh build",
+    "preview": "astro preview --host=0.0.0.0 --port=3000",
     "astro": "astro",
+    "prod": "./.bin/tools.sh runProd",
     "lint": "prettier --write  \"**/*.{js,mjs,jsx,ts,tsx,md,mdx,astro,css,json}\" && eslint --fix \"src/**/*.{js,mjs,ts,jsx,tsx,astro,css,json}\""
   },
   "dependencies": {
