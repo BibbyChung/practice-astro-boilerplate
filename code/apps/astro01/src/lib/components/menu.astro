@@ -14,8 +14,8 @@ const menus = [
   {
     menus.map((item) => {
       const isActive = pathname === item.path
-      const isActiveClass = isActive ? 'text-red-500' : 'text-blue-500'
-      const linkClass = ['underline', isActiveClass].join(' ')
+      const activeClass = isActive ? 'text-red-500' : 'text-blue-500'
+      const linkClass = ['underline', activeClass].join(' ')
 
       return (
         <li class="mr-2">
@@ -27,6 +27,30 @@ const menus = [
     })
   }
 </ul>
+
+<script>
+  import { tap } from 'rxjs'
+  import { getWindow } from '../services/layout.service'
+
+  const sub = getWindow()
+    .pipe(
+      tap((w) => {
+        const elems = w.document.querySelectorAll('#menu-container a')
+        elems.forEach((elem) => {
+          const linkElem = elem as HTMLLinkElement
+          const href = linkElem.href
+
+          const isCurrentPage = href === w.document.location.href
+          const activeClass = isCurrentPage ? 'text-red-500' : 'text-blue-500'
+          const inactiveClass = !isCurrentPage ? 'text-red-500' : 'text-blue-500'
+
+          linkElem.classList.add(activeClass)
+          linkElem.classList.remove(inactiveClass)
+        })
+      }),
+    )
+    .subscribe()
+</script>
 
 <!-- <script>
   import { map } from 'rxjs'
