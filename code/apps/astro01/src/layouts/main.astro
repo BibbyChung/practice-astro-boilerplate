@@ -1,6 +1,6 @@
 ---
 import Layout from '~/layouts/layout.astro'
-import Menu from '~/lib/components/menu.svelte'
+import Menu from '~/lib/components/menu.astro'
 
 type Props = {
   title: string
@@ -11,7 +11,7 @@ const props = Astro.props
 <Layout {...props}>
   <main class="p-8">
     <div class="w-full">
-      <Menu client:load />
+      <Menu />
     </div>
     <div class="mt-12 flex w-full flex-col items-start">
       <slot />

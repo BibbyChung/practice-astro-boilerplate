@@ -4,6 +4,20 @@
 pnpm create astro@latest -- --template with-tailwindcss
 ```
 
+## todos
+
+- remove svelte (done)
+  - menu.svelte to menu.astro
+- add theme(light,dark)
+- add view transitions
+- add swup (option)
+- adjust the branch
+  - feature/app
+  - feature/ui
+  - feature/api
+
+---
+
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/with-tailwindcss)
 [![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/with-tailwindcss)
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/with-tailwindcss/devcontainer.json)

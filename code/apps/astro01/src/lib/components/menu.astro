@@ -1,0 +1,65 @@
+---
+const baseUrl = import.meta.env.BASE_URL
+const pathname = Astro.url.pathname
+
+const menus = [
+  {
+    title: 'Home',
+    path: baseUrl + '',
+  },
+]
+---
+
+<ul class="flex" id="menu-container">
+  {
+    menus.map((item) => {
+      const isActive = pathname === item.path
+      const isActiveClass = isActive ? 'text-red-500' : 'text-blue-500'
+      const linkClass = ['underline', isActiveClass].join(' ')
+
+      return (
+        <li class="mr-2">
+          <a class={linkClass} href={item.path}>
+            {item.title}
+          </a>
+        </li>
+      )
+    })
+  }
+</ul>
+
+<!-- <script>
+  import { map } from 'rxjs'
+  import { getWindow } from '~/lib/services/layout.service'
+
+  // Client-side logic to handle SPA navigation changes
+  if (!import.meta.env.SSR) {
+    // Only subscribe to location changes if we're in a client-side navigation context
+    const location$ = getWindow().pipe(map((w) => w.location))
+    
+    const subscription = location$.subscribe((location) => {
+      const menuLinks = document.querySelectorAll('#menu-container a')
+      
+      menuLinks.forEach((link) => {
+        const href = link.getAttribute('href')
+        const isActive = location.pathname === href
+        
+        // Only update classes if they need to change
+        if (isActive && !link.classList.contains('text-red-500')) {
+          link.classList.add('text-red-500')
+          link.classList.remove('text-blue-500')
+        } else if (!isActive && !link.classList.contains('text-blue-500')) {
+          link.classList.remove('text-red-500')
+          link.classList.add('text-blue-500')
+        }
+      })
+    })
+
+    // Clean up subscription when component is unmounted
+    if (import.meta.hot) {
+      import.meta.hot.on('astro:before-swap', () => {
+        subscription.unsubscribe()
+      })
+    }
+  }
+</script> -->

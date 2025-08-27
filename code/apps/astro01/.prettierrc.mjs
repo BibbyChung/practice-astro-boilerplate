@@ -6,20 +6,12 @@ export default {
   singleQuote: true,
   trailingComma: 'all',
   printWidth: 100,
-  svelteBracketNewLine: true,
   plugins: [
     'prettier-plugin-astro',
-    'prettier-plugin-svelte',
     'prettier-plugin-organize-imports',
     'prettier-plugin-tailwindcss',
   ],
   overrides: [
-    {
-      files: '*.svelte',
-      options: {
-        parser: 'svelte',
-      },
-    },
     {
       files: ['**/*.astro'],
       options: {

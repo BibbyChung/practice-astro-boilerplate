@@ -1,0 +1,29 @@
+---
+const lang = 'astro'
+---
+
+<h2 class="p-2 font-serif text-2xl text-black">hello world - {lang}</h2>
+<button class="btn mt-2" id="confetti-button">click it</button>
+
+<script>
+  import confetti from 'canvas-confetti'
+  import { fromEvent, tap } from 'rxjs'
+
+  const button = document.getElementById('confetti-button')
+
+  const click$ = fromEvent(button!, 'click')
+
+  const subscription = click$
+    .pipe(
+      tap((e) => e.preventDefault()),
+      tap(() => confetti()),
+    )
+    .subscribe()
+
+  // 清理訂閱 (view transitions)
+  document.addEventListener('astro:before-swap', () => {
+    subscription.unsubscribe()
+  })
+</script>
+
+<style></style>
