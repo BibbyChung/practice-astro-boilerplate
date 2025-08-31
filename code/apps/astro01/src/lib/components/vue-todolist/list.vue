@@ -11,7 +11,7 @@
       />
       <label for="toggle-all">Mark all as complete</label>
       <ul class="todo-list">
-        <Item v-for="(item, index) in todosRef ?? []" key="{{ index }}" :props="item" />
+        <Item v-for="(item, index) in todosRef ?? []" :key="getUUID()" :props="item" />
       </ul>
     </section>
 
@@ -23,7 +23,7 @@
 import { filter, map, switchMap, tap } from 'rxjs'
 import { onUnmounted, ref } from 'vue'
 import { toRef } from '~/lib/common/rxjs-interop-vue'
-import { getSubject } from '~/lib/common/util'
+import { getSubject, getUUID } from '~/lib/common/util'
 import { getTodos, setAllTodosCompleted } from '~/lib/services/todolist.service'
 import AddItem from './addItem.vue'
 import Footer from './footer.vue'

@@ -21,7 +21,6 @@ import { getSubject } from '~/lib/common/util'
 import { delTodo, updateTodo, type todoType } from '~/lib/services/todolist.service'
 
 const params = defineProps<{ props: todoType }>()
-
 let inputElemRef = ref<HTMLInputElement>()
 
 const updateItemBtn$ = getSubject<boolean>()
@@ -31,9 +30,8 @@ const updateItemSub = updateItemBtn$
   .pipe(
     filter(() => !!inputElemRef.value),
     tap(() => {
-      const newObj = JSON.parse(JSON.stringify(params)) as todoType
-      newObj.completed = inputElemRef.value?.checked ?? false
-      updateTodo(newObj)
+      params.props.completed = inputElemRef.value?.checked ?? false
+      updateTodo(params as any as todoType)
     }),
   )
   .subscribe()
