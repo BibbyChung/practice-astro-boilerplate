@@ -14,7 +14,7 @@
     .pipe(
       filter(() => !!inputElem),
       tap(() => {
-        const newObj = JSON.parse(JSON.stringify(params)) as todoType
+        const newObj = { ...params }
         newObj.completed = inputElem.checked
         updateTodo(newObj)
       }),
@@ -39,9 +39,10 @@
       checked={params.completed}
       on:change|preventDefault={() => updateItemBtn$.next(true)}
       bind:this={inputElem}
-      id="ii"
+      id={params.id}
     />
-    <label for="ii">{params.title}</label>
+    <label for={params.id}>{params.title}</label>
+    <!-- svelte-ignore a11y_consider_explicit_label -->
     <button on:click|preventDefault={() => destroyBtn$.next(true)} class="destroy"></button>
   </div>
 </li>

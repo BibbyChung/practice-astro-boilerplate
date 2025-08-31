@@ -58,8 +58,7 @@
     />
     <label for="toggle-all">Mark all as complete</label>
     <ul class="todo-list">
-      {#each $todos$ as item}
-        <!-- {JSON.stringify(item)} -->
+      {#each $todos$ as item, i (item.id)}
         <Item params={item} />
       {/each}
     </ul>
