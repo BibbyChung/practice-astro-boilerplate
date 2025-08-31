@@ -116,7 +116,7 @@ export class ListComponent {
         todo: obj.todo,
       })),
       tap((info) => {
-        const newObj = JSON.parse(JSON.stringify(info.todo)) as todoType
+        const newObj = { ...info.todo }
         newObj.completed = info.isChecked
         updateTodo(newObj)
       }),
