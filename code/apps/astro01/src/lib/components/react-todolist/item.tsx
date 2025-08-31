@@ -13,7 +13,7 @@ export default function Item(params: todoType) {
     const updateItemSub = updateItemBtn$
       .pipe(
         tap((isChecked) => {
-          const newObj = JSON.parse(JSON.stringify(params)) as todoType
+          const newObj = { ...params }
           newObj.completed = isChecked
           updateTodo(newObj)
         }),
