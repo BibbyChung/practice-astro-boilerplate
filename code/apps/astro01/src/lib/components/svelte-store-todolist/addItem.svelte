@@ -30,6 +30,7 @@
       class="new-todo"
       placeholder="What needs to be done?"
       bind:this={inputRef}
-      autoFocus={true} />
+      autoFocus={true}
+    />
   </form>
 </header>

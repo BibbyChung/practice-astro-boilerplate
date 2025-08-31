@@ -48,10 +48,11 @@
       class="toggle-all"
       type="checkbox"
       on:change|preventDefault={(e) => checkSelectAllBtn$.set(getUUID())}
-      bind:this={checkboxToggleElem} />
+      bind:this={checkboxToggleElem}
+    />
     <label for="toggle-all">Mark all as complete</label>
     <ul class="todo-list">
-      {#each $todos$ as item}
+      {#each $todos$ as item, i (item.id)}
         <!-- {JSON.stringify(item)} -->
         <Item params={item} />
       {/each}

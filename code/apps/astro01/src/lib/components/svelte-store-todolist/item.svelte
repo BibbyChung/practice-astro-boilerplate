@@ -15,7 +15,7 @@
       return
     }
 
-    const newObj = JSON.parse(JSON.stringify(params)) as todoType
+    const newObj = { ...params }
     newObj.completed = inputElem.checked
     updateTodo(newObj)
   }, true)
@@ -40,8 +40,10 @@
       checked={params.completed}
       on:change|preventDefault={() => updateItemBtn$.set(getUUID())}
       bind:this={inputElem}
-      id="ii" />
-    <label for="ii">{params.title}</label>
+      id={params.id}
+    />
+    <label for={params.id}>{params.title}</label>
+    <!-- svelte-ignore a11y_consider_explicit_label -->
     <button on:click|preventDefault={() => destroyBtn$.set(getUUID())} class="destroy"></button>
   </div>
 </li>
