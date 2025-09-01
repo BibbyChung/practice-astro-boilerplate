@@ -7,22 +7,36 @@ const lang = 'astro'
 
 <script>
   import confetti from 'canvas-confetti'
-  import { fromEvent, tap } from 'rxjs'
+  import { fromEvent, Subscription, switchMap, tap } from 'rxjs'
+  import { getWindow } from '~/lib/services/layout.service'
+  import { mountVTSwap, unmountVTSwap } from '~/lib/services/view-transition'
 
-  const button = document.getElementById('confetti-button')
+  let subs: Subscription[] = []
 
-  const click$ = fromEvent(button!, 'click')
+  const init = () => {
+    const btnEventSub = getWindow()
+      .pipe(
+        switchMap((w) => {
+          const btn = w.document.getElementById('confetti-button')
+          return fromEvent(btn!, 'click')
+        }),
+        tap((e) => {
+          console.log('confetti...')
+          confetti()
+        }),
+      )
+      .subscribe()
 
-  const subscription = click$
-    .pipe(
-      tap((e) => e.preventDefault()),
-      tap(() => confetti()),
-    )
-    .subscribe()
+    subs.push(btnEventSub)
+  }
 
-  // 清理訂閱 (view transitions)
-  document.addEventListener('astro:before-swap', () => {
-    subscription.unsubscribe()
+  mountVTSwap('/', () => {
+    init()
+  })
+
+  unmountVTSwap('/', () => {
+    subs.forEach((sub) => sub.unsubscribe())
+    subs = []
   })
 </script>
 

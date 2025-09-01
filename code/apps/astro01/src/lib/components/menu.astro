@@ -20,6 +20,7 @@ const menus = [
       const isActive = pathname === item.path
       const activeClass = isActive ? 'text-red-500' : 'text-blue-500'
       const linkClass = ['underline', activeClass].join(' ')
+      // const linkClass = ['underline', 'text-blue-500'].join(' ')
 
       return (
         <li class="mr-2">
@@ -37,7 +38,8 @@ const menus = [
   import { getWindow } from '~/lib/services/layout.service'
   import { mountVTSwap, unmountVTSwap } from '~/lib/services/view-transition'
 
-  const subs: Subscription[] = []
+  let subs: Subscription[] = []
+
   const setMenuActive$ = getWindow().pipe(
     tap((w) => {
       const elems = w.document.querySelectorAll('#menu-container a')
@@ -54,12 +56,13 @@ const menus = [
       })
     }),
   )
-  subs.push(setMenuActive$.subscribe())
-  mountVTSwap(() => {
+
+  mountVTSwap('*', () => {
     subs.push(setMenuActive$.subscribe())
   })
-  unmountVTSwap(() => {
-    subs.map((sub) => sub.unsubscribe())
+  unmountVTSwap('*', () => {
+    subs.forEach((sub) => sub.unsubscribe())
+    subs = []
   })
 </script>
 
