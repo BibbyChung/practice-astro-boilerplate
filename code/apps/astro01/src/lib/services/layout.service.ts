@@ -1,4 +1,4 @@
-import { filter, map } from 'rxjs'
+import { filter, fromEvent, map, switchMap, tap } from 'rxjs'
 import { getBehaviorSubject } from '~/lib/common/util'
 
 export const isClient = () => {
@@ -34,3 +34,26 @@ export const getTitle = () =>
     filter((a) => !!a),
     map((a) => a!),
   )
+
+// mount, unmount event
+export const mountPage = (func: () => void) => {
+  getWindow()
+    .pipe(
+      switchMap((w) => fromEvent(w.document, 'DOMContentLoaded')),
+      tap((e) => {
+        func()
+      }),
+    )
+    .subscribe()
+}
+
+export const unmountPage = (func: () => void) => {
+  getWindow()
+    .pipe(
+      switchMap((w) => fromEvent(w.document, 'visibilitychange')),
+      tap((e) => {
+        func()
+      }),
+    )
+    .subscribe()
+}
