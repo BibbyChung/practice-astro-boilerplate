@@ -2,10 +2,17 @@
 const baseUrl = import.meta.env.BASE_URL
 const pathname = Astro.url.pathname
 
+const activeClasses = 'text-red-500 dark:text-red-300'
+const inactiveClasses = 'text-blue-500 dark:text-blue-300'
+
 const menus = [
   {
     title: 'Home',
     path: baseUrl + '',
+  },
+  {
+    title: 'Theme',
+    path: baseUrl + 'theme',
   },
 ]
 ---
@@ -14,7 +21,7 @@ const menus = [
   {
     menus.map((item) => {
       const isActive = pathname === item.path
-      const activeClass = isActive ? 'text-red-500' : 'text-blue-500'
+      const activeClass = isActive ? activeClasses : inactiveClasses
       const linkClass = ['underline', activeClass].join(' ')
 
       return (
@@ -41,11 +48,11 @@ const menus = [
           const href = linkElem.href
 
           const isCurrentPage = href === w.document.location.href
-          const activeClass = isCurrentPage ? 'text-red-500' : 'text-blue-500'
-          const inactiveClass = !isCurrentPage ? 'text-red-500' : 'text-blue-500'
+          const activeClass = isCurrentPage ? 'text-red-500 dark:text-red-300' : 'text-blue-500 dark:text-blue-300'
+          const inactiveClass = !isCurrentPage ? 'text-red-500 dark:text-red-300' : 'text-blue-500 dark:text-blue-300'
 
-          linkElem.classList.add(activeClass)
-          linkElem.classList.remove(inactiveClass)
+          activeClass.split(' ').forEach(cls => linkElem.classList.add(cls))
+          inactiveClass.split(' ').forEach(cls => linkElem.classList.remove(cls))
         })
       }),
     )

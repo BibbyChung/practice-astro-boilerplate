@@ -16,8 +16,18 @@ const props = Astro.props
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{props.title}</title>
+    <script is:inline>
+      // 避免 FOUC
+      const themeKey = 'theme'
+      const themeSetting = localStorage.getItem(themeKey)
+      const isPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+      const isDark = themeSetting === 'dark' || (!themeSetting && isPrefersDark)
+      window.document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light')
+    </script>
   </head>
-  <body class="layout-bg">
+  <body
+    class="bg-gray-50 text-gray-900 transition-colors duration-300 dark:bg-gray-900 dark:text-white"
+  >
     <slot />
   </body>
 </html>
@@ -31,7 +41,7 @@ const props = Astro.props
 
 <style is:global>
   @reference "~/styles/global.css";
-  .layout-bg {
+  /* .layout-bg {
     @apply bg-gray-50;
-  }
+  } */
 </style>

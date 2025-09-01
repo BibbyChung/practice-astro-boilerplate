@@ -1,0 +1,100 @@
+---
+import Main from '~/layouts/main.astro'
+---
+
+<Main title="Theme Control">
+  <div class="rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800">
+    <h1 class="mb-6 text-center text-2xl font-bold text-black dark:text-white">主題控制</h1>
+
+    <div id="theme-toggle" class="flex justify-center">
+      <div class="inline-flex rounded-lg bg-gray-100 dark:bg-gray-700">
+        <button
+          id="light-btn"
+          class="rounded-l-lg border-red-500 bg-gray-100 px-4 py-2 text-sm font-medium text-gray-900 transition-colors dark:bg-gray-600 dark:text-white"
+        >
+          ☀️ 亮
+        </button>
+        <button
+          id="dark-btn"
+          class="rounded-r-lg border-red-500 bg-gray-100 px-4 py-2 text-sm font-medium text-gray-900 transition-colors dark:bg-gray-600 dark:text-white"
+        >
+          🌙 暗
+        </button>
+      </div>
+    </div>
+
+    <div class="mt-6 text-center text-sm text-gray-500 dark:text-gray-400">
+      當前主題: <span id="current-theme">載入中...</span>
+    </div>
+  </div>
+</Main>
+
+<script>
+  import { fromEvent, Subscription, switchMap, take, tap } from 'rxjs'
+  import { getSubject } from '~/lib/common/util'
+  import { mountPage, unmountPage } from '~/lib/services/layout.service'
+  import { type ThemeType, getTheme, setTheme } from '~/lib/services/theme.service'
+
+  const isReady$ = getSubject<boolean>()
+  const subs: Subscription[] = []
+  const themes: ThemeType[] = ['light', 'dark']
+
+  const btnActiveSub = isReady$
+    .pipe(
+      switchMap(() => getTheme()),
+      tap((currentTheme) => {
+        themes.forEach((theme) => {
+          const isActive = currentTheme === theme
+          const btn = document.getElementById(`${theme}-btn`)
+          if (btn) {
+            if (isActive) {
+              btn.classList.add('border-b')
+            } else {
+              btn.classList.remove('border-b')
+            }
+          }
+        })
+      }),
+    )
+    .subscribe()
+
+  const txtSub = isReady$
+    .pipe(
+      switchMap(() => getTheme()),
+      tap((currentTheme) => {
+        const themeSpan = document.getElementById('current-theme')
+        if (themeSpan) {
+          themeSpan.textContent = currentTheme
+        }
+      }),
+    )
+    .subscribe()
+
+  const initEventSub = isReady$
+    .pipe(
+      tap(() => {
+        themes.forEach((theme) => {
+          const button = document.getElementById(`${theme}-btn`)
+          if (button) {
+            const sub = fromEvent(button, 'click')
+              .pipe(tap(() => setTheme(theme)))
+              .subscribe()
+            subs.push(sub)
+          }
+        })
+      }),
+    )
+    .subscribe()
+
+  mountPage(() => {
+    isReady$.next(true)
+  })
+
+  unmountPage(() => {
+    txtSub.unsubscribe()
+    btnActiveSub.unsubscribe()
+    initEventSub.unsubscribe()
+
+    subs.forEach((sub) => sub.unsubscribe())
+  })
+</script>
