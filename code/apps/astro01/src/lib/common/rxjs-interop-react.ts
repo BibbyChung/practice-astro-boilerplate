@@ -9,7 +9,7 @@ const registry = new FinalizationRegistry((cleanupRef: RefObject<FunctionOrNullT
   cleanupRef.current?.()
 })
 
-export default function useMemoCleanup<T>(
+function useMemoCleanup<T>(
   callback: () => [T, FunctionOrNullType],
   deps: unknown[],
 ) {
