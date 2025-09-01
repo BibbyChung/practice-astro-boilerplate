@@ -1,0 +1,44 @@
+---
+import Layout from '~/layouts/main.astro'
+import { getCollection } from 'astro:content'
+
+export async function getStaticPaths() {
+  const newsEntries = await getCollection('news')
+  return newsEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }))
+}
+
+const { entry } = Astro.props
+const { Content } = await entry.render()
+---
+
+<Layout title={entry.data.title}>
+  <div>
+    <a href="/news/" class="mt-4 inline-block text-blue-500 hover:underline">&larr; 返回列表</a>
+
+    <article>
+      <h1 class="mb-2 text-2xl font-bold">{entry.data.title}</h1>
+      <p class="mb-4 text-gray-600">{entry.data.description}</p>
+      <time datetime={entry.data.pubDate.toISOString()} class="text-sm text-gray-500">
+        {entry.data.pubDate.toDateString()}
+      </time>
+      {
+        entry.data.image && (
+          <img
+            transition:name={`new-image-${entry.slug}`}
+            src={entry.data.image}
+            alt={entry.data.title}
+            class="my-4 h-auto w-full object-cover"
+          />
+        )
+      }
+      <div class="mt-4">
+        <pre>
+          <Content />
+        </pre>
+      </div>
+    </article>
+  </div>
+</Layout>

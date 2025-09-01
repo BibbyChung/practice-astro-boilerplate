@@ -7,6 +7,10 @@ const menus = [
     title: 'Home',
     path: baseUrl + '',
   },
+  {
+    title: 'News',
+    path: baseUrl + 'news/',
+  },
 ]
 ---
 
@@ -29,27 +33,34 @@ const menus = [
 </ul>
 
 <script>
-  import { tap } from 'rxjs'
-  import { getWindow } from '../services/layout.service'
+  import { Subscription, tap } from 'rxjs'
+  import { getWindow } from '~/lib/services/layout.service'
+  import { mountVTSwap, unmountVTSwap } from '~/lib/services/view-transition'
 
-  const sub = getWindow()
-    .pipe(
-      tap((w) => {
-        const elems = w.document.querySelectorAll('#menu-container a')
-        elems.forEach((elem) => {
-          const linkElem = elem as HTMLLinkElement
-          const href = linkElem.href
+  const subs: Subscription[] = []
+  const setMenuActive$ = getWindow().pipe(
+    tap((w) => {
+      const elems = w.document.querySelectorAll('#menu-container a')
+      elems.forEach((elem) => {
+        const linkElem = elem as HTMLLinkElement
+        const href = linkElem.href
 
-          const isCurrentPage = href === w.document.location.href
-          const activeClass = isCurrentPage ? 'text-red-500' : 'text-blue-500'
-          const inactiveClass = !isCurrentPage ? 'text-red-500' : 'text-blue-500'
+        const isCurrentPage = href === w.document.location.href
+        const activeClass = isCurrentPage ? 'text-red-500' : 'text-blue-500'
+        const inactiveClass = !isCurrentPage ? 'text-red-500' : 'text-blue-500'
 
-          linkElem.classList.add(activeClass)
-          linkElem.classList.remove(inactiveClass)
-        })
-      }),
-    )
-    .subscribe()
+        linkElem.classList.add(activeClass)
+        linkElem.classList.remove(inactiveClass)
+      })
+    }),
+  )
+  subs.push(setMenuActive$.subscribe())
+  mountVTSwap(() => {
+    subs.push(setMenuActive$.subscribe())
+  })
+  unmountVTSwap(() => {
+    subs.map((sub) => sub.unsubscribe())
+  })
 </script>
 
 <!-- <script>
