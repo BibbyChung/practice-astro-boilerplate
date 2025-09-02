@@ -1,7 +1,7 @@
 import { fromEvent, switchMap, tap } from 'rxjs'
 import { getWindow } from './layout.service'
 
-export const mountVTSwap = (pathname: string, func: () => void) => {
+export const mountVTSwap = (pathnames: string[], func: () => void) => {
   getWindow()
     .pipe(
       switchMap((w) => fromEvent(w.document, 'astro:page-load')),
@@ -9,7 +9,7 @@ export const mountVTSwap = (pathname: string, func: () => void) => {
         const d = e.target as Document
         const currentPathname = d.location.pathname
         // console.log(`mountVTSwap currentPathname: ${currentPathname}`)
-        if (currentPathname === pathname || pathname === '*') {
+        if (pathnames.includes(currentPathname) || pathnames.includes('*')) {
           func()
         }
       }),
@@ -17,7 +17,7 @@ export const mountVTSwap = (pathname: string, func: () => void) => {
     .subscribe()
 }
 
-export const unmountVTSwap = (pathname: string, func: () => void) => {
+export const unmountVTSwap = (pathnames: string[], func: () => void) => {
   getWindow()
     .pipe(
       switchMap((w) => fromEvent(w.document, 'astro:before-swap')),
@@ -25,7 +25,7 @@ export const unmountVTSwap = (pathname: string, func: () => void) => {
         const d = e.target as Document
         const currentPathname = d.location.pathname
         // console.log(`unmountVTSwap currentPathname: ${currentPathname}`)
-        if (currentPathname === pathname || pathname === '*') {
+        if (pathnames.includes(currentPathname) || pathnames.includes('*')) {
           func()
         }
       }),

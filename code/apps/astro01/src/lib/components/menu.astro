@@ -57,10 +57,10 @@ const menus = [
     }),
   )
 
-  mountVTSwap('*', () => {
+  mountVTSwap(['*'], () => {
     subs.push(setMenuActive$.subscribe())
   })
-  unmountVTSwap('*', () => {
+  unmountVTSwap(['*'], () => {
     subs.forEach((sub) => sub.unsubscribe())
     subs = []
   })
