@@ -1,4 +1,4 @@
-import { filter, fromEvent, map, switchMap, tap } from 'rxjs'
+import { filter, fromEvent, map, of, switchMap, take, tap } from 'rxjs'
 import { getBehaviorSubject } from '~/lib/common/util'
 
 export const isClient = () => {
@@ -57,3 +57,17 @@ export const unmountPage = (func: () => void) => {
     )
     .subscribe()
 }
+
+// utils
+export const preventBodyScroll = (isScrollPrevented: boolean) =>
+  of(true).pipe(
+    switchMap(() => getWindow().pipe(take(1))),
+    tap((w) => {
+      const body = w.document.body
+      if (isScrollPrevented) {
+        body.classList.add('overflow-hidden')
+      } else {
+        body.classList.remove('overflow-hidden')
+      }
+    }),
+  )
